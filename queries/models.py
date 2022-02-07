@@ -15,7 +15,7 @@ class Location(models.Model):
     municipality = models.CharField(max_length=64)
     streat = models.CharField(max_length=64)
     building_number = models.IntegerField()
-    branch_id = models.IntegerField()
+    branch_id = models.CharField(max_length=90)
 
     def __str__(self):
         return f'{self.city} - {self.country}'
@@ -42,8 +42,9 @@ class Language(models.Model):
 
 class Programmer(models.Model):
     name = models.CharField(max_length=64)
-    age = models.IntegerField(max_length=64)
+    age = models.IntegerField()
     joined_date = models.DateTimeField()
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     languages = models.ManyToManyField(Language)
 
     def __str__(self):
